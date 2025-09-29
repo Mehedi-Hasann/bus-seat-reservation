@@ -67,6 +67,7 @@ for (const btn of allBtn){
                 totalPrice = 0 ;
                 seat = 0;
                 remainSeat = 40;
+                reset();
             })
         })
         
@@ -76,7 +77,6 @@ for (const btn of allBtn){
 
 const getOffer = document.getElementById('get-offer');
         getOffer.addEventListener('click',function(event){
-            console.log('hi')
             const val = document.getElementById('coupoun-code').value;
             if(val==='NEW15'){
                 let discount = parseInt(totalPrice*0.15);
@@ -84,6 +84,17 @@ const getOffer = document.getElementById('get-offer');
                 totalPriceValue -= discount;
                 const grandTotalElement = document.getElementById('grand-total');
                 grandTotalElement.innerText = totalPriceValue - discount;
+
+                const discountDiv = document.getElementById('discount-div');
+                const p1 = document.createElement('h1');
+                const p2 = document.createElement('h1');
+                p1.classList.add('font-bold');
+                p2.classList.add('font-bold');
+                p1.innerText = 'Discount';
+                p2.innerText = discount;
+                discountDiv.appendChild(p1);
+                discountDiv.appendChild(p2);
+                document.getElementById('coupoun+apply').classList.add('hidden');
             }
             else if(val==='Couple 20'){
                 let discount = parseInt(totalPrice*0.20);
@@ -91,13 +102,9 @@ const getOffer = document.getElementById('get-offer');
                 totalPriceValue -= discount;
                 const grandTotalElement = document.getElementById('grand-total');
                 grandTotalElement.innerText = totalPriceValue - discount;
+                document.getElementById('coupoun+apply').classList.add('hidden');
             }
             else{
                 alert('Enter a Valid Coupoun Code !')
             }
         })
-
-// const nextBtn = document.getElementById('next-btn').addEventListener('click',function(){
-
-// })
-
